@@ -25,11 +25,9 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
       .catch((error) => console.error("Error:", error));
   }, [link]);
 
-  console.log(data);
-
   if (data) {
     return (
-      <div className="card card-normal w-96 bg-base-100 shadow-xl basis-1/4 lg:basis-1/5">
+      <div className="card card-normal grow bg-base-100 shadow-xl basis-1/5 lg:1/6 ">
         <figure>
           <img
             src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${
