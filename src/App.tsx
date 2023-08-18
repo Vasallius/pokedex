@@ -19,7 +19,7 @@ function App() {
   useState([]);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?limit=14")
+    fetch("https://pokeapi.co/api/v2/pokemon/?limit=100")
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error:", error));
@@ -31,10 +31,16 @@ function App() {
   return (
     <>
       <h1>Pokedex</h1>
-      <div className="flex flex-row flex-wrap">
+      <div className="flex flex-row flex-wrap gap-4 justify-center">
         {data &&
           data.results.map((pokemon) => {
-            return <PokemonCard name={pokemon.name} link={pokemon.url} />;
+            return (
+              <PokemonCard
+                key={pokemon.name}
+                name={pokemon.name}
+                link={pokemon.url}
+              />
+            );
           })}
       </div>
     </>
