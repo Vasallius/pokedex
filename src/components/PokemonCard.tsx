@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 type PokemonCardProps = {
   name: string;
@@ -9,6 +10,7 @@ function capitalize(str: string) {
 }
 
 function padNumber(number: number): string {
+  console.log(number);
   return number.toString().padStart(3, "0");
 }
 
@@ -23,24 +25,29 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
       .catch((error) => console.error("Error:", error));
   }, [link]);
 
-  const newId = padNumber(data?.id);
-  return (
-    <div className="card card-normal w-96 bg-base-100 shadow-xl basis-1/4 lg:basis-1/5">
-      <figure>
-        <img
-          src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${newId}.png`}
-          className="w-48"
-          alt="Picture of Pokemon"
-        />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">
-          {padNumber(data?.id)} {capitalize(name)}
-        </h2>
-        <div className="badge badge-secondary">Grass</div>
-        <p></p>
+  console.log(data);
+
+  if (data) {
+    return (
+      <div className="card card-normal w-96 bg-base-100 shadow-xl basis-1/4 lg:basis-1/5">
+        <figure>
+          <img
+            src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${
+              data ? padNumber(data.id) : "001"
+            }.png`}
+            className="w-48"
+            alt="Picture of Pokemon"
+          />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">
+            {padNumber(data.id)} {capitalize(name)}
+          </h2>
+          <div className="badge badge-secondary">Grass</div>
+          <p></p>
+        </div>
+        <h2>{link}</h2>
       </div>
-      <h2>{link}</h2>
-    </div>
-  );
+    );
+  }
 }
