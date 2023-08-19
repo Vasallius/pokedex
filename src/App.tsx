@@ -101,6 +101,7 @@ function App() {
           <>
             <div className="flex flex-col items-center">
               <img src={Pokedex} className="w-80" alt="Pokedex Logo" />
+
               <input
                 type="text"
                 placeholder="Search Pokemon by ID or Name"
@@ -108,8 +109,7 @@ function App() {
                 value={searchInput}
                 onChange={handleSearchInputChange}
               />
-
-              <div className="flex">
+              <div className="flex gap-2">
                 <button onClick={sortByNameAZ} className="btn btn-primary">
                   Sort by name (A-Z)
                 </button>
