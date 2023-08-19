@@ -102,11 +102,11 @@ function App() {
             <div className="flex flex-col items-center">
               <img
                 src={Pokedex}
-                className="w-80 mt-4 mb-4"
+                className="w-80 mt-8 mb-8"
                 alt="Pokedex Logo"
               />
 
-              <div className="flex flex-row gap-2 flex-wrap w-full justify-center">
+              <div className="flex flex-row gap-2 flex-wrap w-full justify-center mb-16">
                 <input
                   type="text"
                   placeholder="Search Pokemon by ID or Name"
@@ -114,16 +114,28 @@ function App() {
                   value={searchInput}
                   onChange={handleSearchInputChange}
                 />
-                <button onClick={sortByNameAZ} className="btn btn-primary">
+                <button
+                  onClick={sortByNameAZ}
+                  className="btn text-white bg-[#2596be] "
+                >
                   Sort by name (A-Z)
                 </button>
-                <button onClick={sortByNameZA} className="btn btn-primary">
+                <button
+                  onClick={sortByNameZA}
+                  className="btn text-white bg-[#2596be]"
+                >
                   Sort by name (Z-A)
                 </button>
-                <button onClick={sortByIDAsc} className="btn btn-primary">
+                <button
+                  onClick={sortByIDAsc}
+                  className="btn text-white bg-[#2596be]"
+                >
                   Sort by ID (1-1010)
                 </button>
-                <button onClick={sortByIDDesc} className="btn btn-primary">
+                <button
+                  onClick={sortByIDDesc}
+                  className="btn text-white bg-[#2596be]"
+                >
                   Sort by ID (1010-1)
                 </button>
               </div>
