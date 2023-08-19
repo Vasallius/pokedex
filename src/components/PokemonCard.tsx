@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import axios from "axios";
 import { useEffect, useState } from "react";
+
 type PokemonCardProps = {
   name: string;
   link: string;
@@ -14,13 +16,12 @@ function padNumber(number: number): string {
 }
 
 export function PokemonCard({ name, link }: PokemonCardProps) {
-  //   any is NOT ideal however the data that is being returned from the API is a lot and we will only use a small portion of it
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch(link)
-      .then((response) => response.json())
-      .then((data) => setData(data))
+    axios
+      .get(link)
+      .then((response) => setData(response.data))
       .catch((error) => console.error("Error:", error));
   }, [link]);
 
@@ -28,7 +29,10 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
     const types = data.types.map(
       (type: { slot: number; type: { name: string } }) => (
         <>
-          <div key={type.type.name} className="badge badge-secondary mr-2">
+          <div
+            key={type.type.name}
+            className="badge badge-primary bg-red-300 mr-2"
+          >
             {capitalize(type.type.name)}
           </div>
         </>
@@ -57,4 +61,6 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
       </div>
     );
   }
+
+  return null;
 }
