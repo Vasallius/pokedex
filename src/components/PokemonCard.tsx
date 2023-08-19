@@ -29,7 +29,7 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
       (type: { slot: number; type: { name: string } }) => (
         <>
           <div key={type.type.name} className="badge badge-secondary mr-2">
-            {type.type.name}
+            {capitalize(type.type.name)}
           </div>
         </>
       )
