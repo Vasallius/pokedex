@@ -21,6 +21,7 @@ type Pokemon = {
 function App() {
   const [data, setData] = useState<ApiData | null>(null);
   const [pokemonList, setpokemonList] = useState<Pokemon[]>([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     axios
@@ -71,10 +72,36 @@ function App() {
       setpokemonList(sortedData);
     }
   }
+
+  function handleSearchInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearchInput(event.target.value);
+  }
+
+  function filter(pokemon: Pokemon) {
+    const searchValue = searchInput.toLowerCase();
+    if (/^\d+$/.test(searchValue)) {
+      // Filter by ID
+      const id = parseInt(searchValue);
+      const pokemonId = parseInt(pokemon.url.split("/").slice(-2, -1)[0]);
+      return pokemonId === id;
+    } else {
+      // Filter by name
+      return pokemon.name.toLowerCase().includes(searchValue);
+    }
+  }
+
   return (
     <>
       <div className="flex flex-col items-center">
         <h1 className="mx-auto">Pokedex</h1>
+        <input
+          type="text"
+          placeholder="Search Pokemon by ID or Name"
+          className="input input-bordered w-full max-w-xs"
+          value={searchInput}
+          onChange={handleSearchInputChange}
+        />
+
         <div className="flex">
           <button onClick={sortByNameAZ} className="btn btn-primary">
             Sort by name (A-Z)
@@ -83,18 +110,16 @@ function App() {
             Sort by name (Z-A)
           </button>
           <button onClick={sortByIDAsc} className="btn btn-primary">
-            {" "}
             Sort by ID (1-1010)
           </button>
           <button onClick={sortByIDDesc} className="btn btn-primary">
-            {" "}
             Sort by ID (1010-1)
           </button>
         </div>
       </div>
       <div className="flex flex-row flex-wrap gap-4 justify-center">
         {data &&
-          pokemonList.map((pokemon) => {
+          pokemonList.filter(filter).map((pokemon) => {
             return (
               <PokemonCard
                 key={pokemon.name}
