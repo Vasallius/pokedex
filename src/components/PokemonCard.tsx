@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import axiosRetry from "axios-retry";
+import { Link } from "react-router-dom";
 axiosRetry(axios, { retries: 10 });
 type PokemonCardProps = {
   name: string;
@@ -71,23 +72,25 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
     const typeswrapper = <div>{types}</div>;
 
     return (
-      <div className="card card-normal w-96 bg-base-100 shadow-xl basis-1/5 lg:1/6">
-        <figure>
-          <img
-            src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${
-              data ? padNumber(data.id) : "001"
-            }.png`}
-            className="w-48"
-            alt="Picture of Pokemon"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            #{padNumber(data.id)} {capitalize(name)}
-          </h2>
-          {typeswrapper}
+      <Link to={`/${data.id}`}>
+        <div className="card card-normal w-96 bg-base-100 shadow-xl basis-1/5 lg:1/6">
+          <figure>
+            <img
+              src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${
+                data ? padNumber(data.id) : "001"
+              }.png`}
+              className="w-48"
+              alt="Picture of Pokemon"
+            />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">
+              #{padNumber(data.id)} {capitalize(name)}
+            </h2>
+            {typeswrapper}
+          </div>
         </div>
-      </div>
+      </Link>
     );
   }
 
