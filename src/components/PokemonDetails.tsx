@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { typeColors } from "../utils/pokemonUtils";
+import { capitalize, padNumber, typeColors } from "../utils/pokemonUtils";
 
 export function PokemonDetails() {
   const { pokemonID } = useParams();
@@ -34,14 +34,6 @@ export function PokemonDetails() {
       </>
     )
   );
-  function padNumber(number: number): string {
-    return number.toString().padStart(3, "0");
-  }
-
-  function capitalize(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
   if (pokemonData) {
     return (
       <>

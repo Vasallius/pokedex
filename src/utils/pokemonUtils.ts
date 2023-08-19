@@ -23,3 +23,10 @@ export const typeColors: TypeColors = {
   fairy: "#EE99AC",
   undefined: "red-500",
 };
+export function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export function padNumber(number: number): string {
+  return number.toString().padStart(3, "0");
+}

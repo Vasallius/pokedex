@@ -3,20 +3,12 @@ import axios from "axios";
 import axiosRetry from "axios-retry";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { typeColors } from "../utils/pokemonUtils";
+import { capitalize, padNumber, typeColors } from "../utils/pokemonUtils";
 axiosRetry(axios, { retries: 10 });
 type PokemonCardProps = {
   name: string;
   link: string;
 };
-
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function padNumber(number: number): string {
-  return number.toString().padStart(3, "0");
-}
 
 export function PokemonCard({ name, link }: PokemonCardProps) {
   const [data, setData] = useState<any>(null);
