@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import axiosRetry from "axios-retry";
-axiosRetry(axios, { retries: 3 });
+axiosRetry(axios, { retries: 10 });
 type PokemonCardProps = {
   name: string;
   link: string;
@@ -83,7 +83,7 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
         </figure>
         <div className="card-body">
           <h2 className="card-title">
-            {padNumber(data.id)} {capitalize(name)}
+            #{padNumber(data.id)} {capitalize(name)}
           </h2>
           {typeswrapper}
         </div>
