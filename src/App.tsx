@@ -138,7 +138,7 @@ function App() {
           </>
         }
       />
-      <Route path="/:pokemonName" element={<PokemonDetails />} />
+      <Route path="/:pokemonID" element={<PokemonDetails />} />
     </Routes>
   );
 }
