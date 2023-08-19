@@ -3,6 +3,7 @@ import axiosRetry from "axios-retry";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Pokedex from "./assets/pokedex.svg";
 import { PokemonCard } from "./components/PokemonCard";
 import { PokemonDetails } from "./components/PokemonDetails";
 
@@ -99,7 +100,7 @@ function App() {
         element={
           <>
             <div className="flex flex-col items-center">
-              <h1 className="mx-auto">Pokedex</h1>
+              <img src={Pokedex} alt="Pokedex Logo" />
               <input
                 type="text"
                 placeholder="Search Pokemon by ID or Name"
