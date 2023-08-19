@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import axiosRetry from "axios-retry";
 import { useEffect, useState } from "react";
@@ -11,6 +10,7 @@ type PokemonCardProps = {
 };
 
 export function PokemonCard({ name, link }: PokemonCardProps) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
