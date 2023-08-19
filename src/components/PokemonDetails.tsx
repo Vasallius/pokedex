@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { capitalize, padNumber, typeColors } from "../utils/pokemonUtils";
 interface Stat {
   base_stat: number;
@@ -52,6 +52,7 @@ export function PokemonDetails() {
                   pokemonData ? padNumber(id) : "001"
                 }.png`}
                 alt="Picture of Pokemon"
+                className="w-2/3"
               />
             </figure>
             <div className="card-body">
@@ -66,6 +67,16 @@ export function PokemonDetails() {
                   {capitalize(stat.stat.name)}: {stat.base_stat}
                 </div>
               ))}
+
+              <Link to="/">
+                <button className="btn btn-primary">Home</button>
+              </Link>
+              <Link to={`/${id === 1 ? id : id - 1}`}>
+                <button className="btn btn-primary">Prev</button>
+              </Link>
+              <Link to={`/${id === 1010 ? id : id + 1}`}>
+                <button className="btn btn-primary">Next</button>
+              </Link>
             </div>
           </div>
         </div>
