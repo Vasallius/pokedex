@@ -19,7 +19,7 @@ function App() {
   useState([]);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?limit=100")
+    fetch("https://pokeapi.co/api/v2/pokemon/?limit=20")
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error:", error));
