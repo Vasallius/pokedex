@@ -1,7 +1,10 @@
 import axios from "axios";
+import axiosRetry from "axios-retry";
 import { useEffect, useState } from "react";
 import "./App.css";
 import { PokemonCard } from "./components/PokemonCard";
+
+axiosRetry(axios, { retries: 3 });
 
 type ApiData = {
   count: number;
@@ -20,10 +23,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon/?limit=1010", {
-        retry: 3, // Number of retries
-        retryDelay: 1000, // Delay between retries in milliseconds
-      })
+      .get("https://pokeapi.co/api/v2/pokemon/?limit=1010")
       .then((response) => setData(response.data))
       .catch((error) => console.error("Error:", error));
   }, []);
