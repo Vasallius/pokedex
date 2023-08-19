@@ -27,11 +27,15 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
   if (data) {
     const types = data.types.map(
       (type: { slot: number; type: { name: string } }) => (
-        <div key={type.type.name} className="badge badge-secondary mr-2">
-          {type.type.name}
-        </div>
+        <>
+          <div key={type.type.name} className="badge badge-secondary mr-2">
+            {type.type.name}
+          </div>
+        </>
       )
     );
+
+    const typeswrapper = <div>{types}</div>;
 
     return (
       <div className="card card-normal w-96 bg-base-100 shadow-xl basis-1/5 lg:1/6">
@@ -48,7 +52,7 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
           <h2 className="card-title">
             {padNumber(data.id)} {capitalize(name)}
           </h2>
-          {types}
+          {typeswrapper}
         </div>
       </div>
     );
