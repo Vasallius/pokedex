@@ -100,16 +100,20 @@ function App() {
         element={
           <>
             <div className="flex flex-col items-center">
-              <img src={Pokedex} className="w-80" alt="Pokedex Logo" />
-
-              <input
-                type="text"
-                placeholder="Search Pokemon by ID or Name"
-                className="input input-bordered w-full max-w-xs"
-                value={searchInput}
-                onChange={handleSearchInputChange}
+              <img
+                src={Pokedex}
+                className="w-80 mt-4 mb-4"
+                alt="Pokedex Logo"
               />
-              <div className="flex gap-2">
+
+              <div className="flex flex-row gap-2 flex-wrap w-full justify-center">
+                <input
+                  type="text"
+                  placeholder="Search Pokemon by ID or Name"
+                  className="input input-bordered w-full max-w-xs shrink-0"
+                  value={searchInput}
+                  onChange={handleSearchInputChange}
+                />
                 <button onClick={sortByNameAZ} className="btn btn-primary">
                   Sort by name (A-Z)
                 </button>
