@@ -17,7 +17,7 @@ export function PokemonDetails() {
     return <div>Loading...</div>;
   }
 
-  const { id, name, stats, sprites, types, weight, height } = pokemonData;
+  const { id, name } = pokemonData;
 
   function padNumber(number: number): string {
     return number.toString().padStart(3, "0");
