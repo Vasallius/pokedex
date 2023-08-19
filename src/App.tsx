@@ -100,7 +100,7 @@ function App() {
         element={
           <>
             <div className="flex flex-col items-center">
-              <img src={Pokedex} alt="Pokedex Logo" />
+              <img src={Pokedex} className="w-80" alt="Pokedex Logo" />
               <input
                 type="text"
                 placeholder="Search Pokemon by ID or Name"
