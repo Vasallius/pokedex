@@ -1,11 +1,18 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { capitalize, padNumber, typeColors } from "../utils/pokemonUtils";
-
+interface Stat {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  };
+}
 export function PokemonDetails() {
   const { pokemonID } = useParams();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [pokemonData, setPokemonData] = useState<any>(null);
 
   useEffect(() => {
@@ -54,7 +61,7 @@ export function PokemonDetails() {
               <div>{pokemonTypes}</div>
               <div>Height: {height}</div>
               <div>Weight: {weight}</div>
-              {stats.map((stat: any) => (
+              {stats.map((stat: Stat) => (
                 <div key={stat.stat.name}>
                   {capitalize(stat.stat.name)}: {stat.base_stat}
                 </div>
