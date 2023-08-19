@@ -19,7 +19,7 @@ export function PokemonDetails() {
     return <div>Loading...</div>;
   }
 
-  const { id, name, types, height, weight } = pokemonData;
+  const { id, name, types, height, weight, stats } = pokemonData;
 
   const pokemonTypes = types.map(
     (type: { slot: number; type: { name: string } }) => (
@@ -38,7 +38,7 @@ export function PokemonDetails() {
     return (
       <>
         <div className="flex justify-center mt-12">
-          <div className="card max-w-xl bg-base-100 shadow-xl p-8">
+          <div className="card card-side max-w-3xl bg-base-100 shadow-xl p-8">
             <figure>
               <img
                 src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${
@@ -54,6 +54,11 @@ export function PokemonDetails() {
               <div>{pokemonTypes}</div>
               <div>Height: {height}</div>
               <div>Weight: {weight}</div>
+              {stats.map((stat: any) => (
+                <div key={stat.stat.name}>
+                  {capitalize(stat.stat.name)}: {stat.base_stat}
+                </div>
+              ))}
             </div>
           </div>
         </div>
