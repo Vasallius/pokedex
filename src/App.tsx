@@ -28,13 +28,23 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon/?limit=1010")
+      .get("https://pokeapi.co/api/v2/pokemon/?limit=10")
       .then((response) => {
         setData(response.data);
         setpokemonList(response.data.results);
       })
       .catch((error) => console.error("Error:", error));
   }, []);
+
+  function loadMorePokemon() {
+    axios
+      .get("https://pokeapi.co/api/v2/pokemon/?limit=1010")
+      .then((response) => {
+        setData(response.data);
+        setpokemonList(response.data.results);
+      })
+      .catch((error) => console.error("Error:", error));
+  }
 
   function sortByNameAZ() {
     if (data) {
@@ -137,6 +147,12 @@ function App() {
                   className="btn text-white bg-[#3e7dca]"
                 >
                   Sort by ID (1010-1)
+                </button>
+                <button
+                  onClick={loadMorePokemon}
+                  className="btn text-white bg-[#3e7dca]"
+                >
+                  Load More Pokemon
                 </button>
               </div>
             </div>
