@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link, useParams } from "react-router-dom";
-import { capitalize, padNumber, typeColors } from "../utils/pokemonUtils";
+import {
+  calculateWeakness,
+  capitalize,
+  padNumber,
+  typeColors,
+} from "../utils/pokemonUtils";
 
 interface Stat {
   base_stat: number;
@@ -44,6 +49,22 @@ export function PokemonDetails() {
       </>
     )
   );
+
+  console.log(calculateWeakness(types[0].type.name, types[1]?.type.name));
+  const weaknessTypes = calculateWeakness(
+    types[0].type.name,
+    types[1]?.type.name
+  ).map((type: string) => (
+    <>
+      <div
+        key={type}
+        className="badge text-white mr-2 "
+        style={{ backgroundColor: typeColors[type.toLowerCase()] }}
+      >
+        {capitalize(type)}
+      </div>
+    </>
+  ));
   if (pokemonData) {
     return (
       <>
@@ -66,6 +87,7 @@ export function PokemonDetails() {
                 <div>{pokemonTypes}</div>
                 <div>Height: {height}</div>
                 <div>Weight: {weight}</div>
+                <div>Weak to: {weaknessTypes}</div>
                 <div className="flex flex-wrap justify-between">
                   {stats.map((stat: Stat) => {
                     let statName = stat.stat.name;
