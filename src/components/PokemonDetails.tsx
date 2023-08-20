@@ -67,24 +67,41 @@ export function PokemonDetails() {
                 <div>Height: {height}</div>
                 <div>Weight: {weight}</div>
                 <div className="flex flex-wrap justify-between">
-                  {stats.map((stat: Stat) => (
-                    <div key={stat.stat.name} className="w-1/2 p-2">
-                      <h2>{capitalize(stat.stat.name)}</h2>
-                      <div style={{ width: "50px", height: "50px" }}>
-                        <CircularProgressbar
-                          value={stat.base_stat}
-                          maxValue={200}
-                          text={`${stat.base_stat}`}
-                          counterClockwise
-                          styles={{
-                            path: {
-                              stroke: `${typeColors[types[0].type.name]}`,
-                            },
-                          }}
-                        />
+                  {stats.map((stat: Stat) => {
+                    let statName = stat.stat.name;
+                    if (statName === "special-attack") {
+                      statName = "sp-Atk";
+                    } else if (statName === "special-defense") {
+                      statName = "sp-Def";
+                    } else if (statName === "hp") {
+                      statName = "HP";
+                    } else {
+                      statName = capitalize(statName);
+                    }
+
+                    return (
+                      <div key={stat.stat.name} className="w-1/2 p-2">
+                        <h2>{capitalize(statName)}</h2>
+                        <div style={{ width: "50px", height: "50px" }}>
+                          <CircularProgressbar
+                            value={stat.base_stat}
+                            maxValue={200}
+                            text={`${stat.base_stat}`}
+                            counterClockwise
+                            styles={{
+                              path: {
+                                stroke: `${typeColors[types[0].type.name]}`,
+                              },
+                              text: {
+                                fill: "white",
+                                fontSize: "24px",
+                              },
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
