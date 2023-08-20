@@ -51,6 +51,38 @@ export const typeWeakness: Record<string, string[]> = {
   Fairy: ["Poison", "Steel"],
 };
 
+export const typeResistances: Record<string, string[]> = {
+  Normal: [],
+  Fire: ["Fire", "Grass", "Ice", "Bug", "Steel", "Fairy"],
+  Water: ["Fire", "Water", "Ice", "Steel"],
+  Electric: ["Electric", "Flying", "Steel"],
+  Grass: ["Water", "Electric", "Grass", "Ground"],
+  Ice: ["Ice"],
+  Fighting: ["Bug", "Rock", "Dark"],
+  Poison: ["Grass", "Fighting", "Poison", "Bug", "Fairy"],
+  Ground: ["Poison", "Rock"],
+  Flying: ["Grass", "Fighting", "Bug"],
+  Psychic: ["Fighting", "Psychic"],
+  Bug: ["Grass", "Fighting", "Ground"],
+  Rock: ["Normal", "Fire", "Poison", "Flying"],
+  Ghost: ["Poison", "Bug"],
+  Dragon: ["Fire", "Water", "Electric", "Grass"],
+  Dark: ["Ghost", "Dark"],
+  Steel: [
+    "Normal",
+    "Grass",
+    "Ice",
+    "Flying",
+    "Psychic",
+    "Bug",
+    "Rock",
+    "Dragon",
+    "Steel",
+    "Fairy",
+  ],
+  Fairy: ["Fighting", "Bug", "Dark"],
+};
+
 export function calculateWeakness(type1: string, type2?: string): string[] {
   let weakness: Set<string> = new Set();
   type1 = capitalize(type1);
@@ -69,11 +101,9 @@ export function calculateWeakness(type1: string, type2?: string): string[] {
   }
   console.log(weakness);
   for (const type of weakness) {
-    console.log(type, type1, type2);
-    console.log(typeWeakness[type]);
     if (
-      typeWeakness[type].includes(type1) ||
-      typeWeakness[type].includes(type2)
+      typeResistances[type1].includes(type) ||
+      typeResistances[type2].includes(type)
     ) {
       weakness.delete(type);
     }

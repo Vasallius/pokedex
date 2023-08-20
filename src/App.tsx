@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import axiosRetry from "axios-retry";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -7,7 +7,14 @@ import Pokedex from "./assets/pokedex.svg";
 import { PokemonCard } from "./components/PokemonCard";
 import { PokemonDetails } from "./components/PokemonDetails";
 
-axiosRetry(axios, { retries: 3 });
+axiosRetry(axios, {
+  retries: 10,
+  retryDelay: axiosRetry.exponentialDelay,
+  retryCondition: (error: AxiosError) => {
+    console.log(`Retrying request to ${error.config!.url}`);
+    return true;
+  },
+});
 
 type ApiData = {
   count: number;

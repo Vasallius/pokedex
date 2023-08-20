@@ -1,9 +1,16 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import axiosRetry from "axios-retry";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { capitalize, padNumber, typeColors } from "../utils/pokemonUtils";
-axiosRetry(axios, { retries: 10 });
+axiosRetry(axios, {
+  retries: 10,
+  retryDelay: axiosRetry.exponentialDelay,
+  retryCondition: (error: AxiosError) => {
+    console.log(`Retrying request to ${error.config!.url}`);
+    return true;
+  },
+});
 type PokemonCardProps = {
   name: string;
   link: string;
