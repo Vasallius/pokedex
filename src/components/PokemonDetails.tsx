@@ -54,15 +54,13 @@ export function PokemonDetails() {
     types[0].type.name,
     types[1]?.type.name
   ).map((type: string, index: number) => (
-    <>
-      <div
-        key={`${type}-${index}`}
-        className="badge text-white mr-2 "
-        style={{ backgroundColor: typeColors[type.toLowerCase()] }}
-      >
-        {capitalize(type)}
-      </div>
-    </>
+    <div
+      key={`${type}-${index}`}
+      className="badge text-white mr-2 "
+      style={{ backgroundColor: typeColors[type.toLowerCase()] }}
+    >
+      {capitalize(type)}
+    </div>
   ));
   if (pokemonData) {
     return (

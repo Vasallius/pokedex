@@ -103,7 +103,6 @@ export function calculateWeakness(type1: string, type2?: string): string[] {
       weakness.delete(type);
     }
   }
-  console.log(weakness);
 
   return Array.from(weakness);
 }
