@@ -50,14 +50,13 @@ export function PokemonDetails() {
     )
   );
 
-  console.log(calculateWeakness(types[0].type.name, types[1]?.type.name));
   const weaknessTypes = calculateWeakness(
     types[0].type.name,
     types[1]?.type.name
-  ).map((type: string) => (
+  ).map((type: string, index: number) => (
     <>
       <div
-        key={type}
+        key={`${type}-${index}`}
         className="badge text-white mr-2 "
         style={{ backgroundColor: typeColors[type.toLowerCase()] }}
       >

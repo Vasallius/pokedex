@@ -29,10 +29,10 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
 
   if (data) {
     const types = data.types.map(
-      (type: { slot: number; type: { name: string } }) => (
+      (type: { slot: number; type: { name: string } }, index: number) => (
         <>
           <div
-            key={type.type.name}
+            key={`${type.type.name}-${index}`}
             className="badge text-white mr-2 "
             style={{ backgroundColor: typeColors[type.type.name] }}
           >
