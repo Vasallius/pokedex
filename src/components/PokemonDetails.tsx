@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 import { Link, useParams } from "react-router-dom";
 import { capitalize, padNumber, typeColors } from "../utils/pokemonUtils";
+
 interface Stat {
   base_stat: number;
   effort: number;
@@ -63,11 +66,26 @@ export function PokemonDetails() {
                 <div>{pokemonTypes}</div>
                 <div>Height: {height}</div>
                 <div>Weight: {weight}</div>
-                {stats.map((stat: Stat) => (
-                  <div key={stat.stat.name}>
-                    {capitalize(stat.stat.name)}: {stat.base_stat}
-                  </div>
-                ))}
+                <div className="flex flex-wrap justify-between">
+                  {stats.map((stat: Stat) => (
+                    <div key={stat.stat.name} className="w-1/2 p-2">
+                      <h2>{capitalize(stat.stat.name)}</h2>
+                      <div style={{ width: "50px", height: "50px" }}>
+                        <CircularProgressbar
+                          value={stat.base_stat}
+                          maxValue={200}
+                          text={`${stat.base_stat}`}
+                          counterClockwise
+                          styles={{
+                            path: {
+                              stroke: `${typeColors[types[0].type.name]}`,
+                            },
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-8">
