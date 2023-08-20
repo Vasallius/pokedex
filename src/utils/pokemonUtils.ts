@@ -95,15 +95,15 @@ export function calculateWeakness(type1: string, type2?: string): string[] {
     weakness = new Set([...weakness, ...typeWeakness[type2]]);
   }
 
-  if (type2 && type1 in typeWeakness && type2 in typeWeakness) {
-    weakness.delete(type1);
-    weakness.delete(type2);
-  }
-  console.log(weakness);
+  // if (type2 && type1 in typeWeakness && type2 in typeWeakness) {
+  //   weakness.delete(type1);
+  //   weakness.delete(type2);
+  // }
+  // console.log(weakness);
   for (const type of weakness) {
     if (
       typeResistances[type1].includes(type) ||
-      typeResistances[type2].includes(type)
+      (type2 && typeResistances[type2].includes(type))
     ) {
       weakness.delete(type);
     }

@@ -107,7 +107,7 @@ export function PokemonDetails() {
                         <div style={{ width: "50px", height: "50px" }}>
                           <CircularProgressbar
                             value={stat.base_stat}
-                            maxValue={200}
+                            maxValue={255}
                             text={`${stat.base_stat}`}
                             counterClockwise
                             styles={{
