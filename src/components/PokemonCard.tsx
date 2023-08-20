@@ -39,7 +39,7 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
 
     return (
       <Link to={`/${data.id}`}>
-        <div className="card card-normal w-96 bg-base-100 shadow-xl basis-1/5 lg:1/6">
+        <div className="card card-normal  w-96 bg-base-100 shadow-xl basis-1/5 lg:1/6">
           <figure>
             <img
               src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${

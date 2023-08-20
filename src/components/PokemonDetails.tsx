@@ -60,7 +60,7 @@ export function PokemonDetails() {
                 />
               </figure>
               <div className="card-body">
-                <h1 className="card-title">
+                <h1 className="card-title text-[30px] text-white">
                   # {padNumber(id)} {capitalize(name)}
                 </h1>
                 <div>{pokemonTypes}</div>
