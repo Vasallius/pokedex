@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Pokedex from "./assets/pokedex.svg";
+import { ButtonGroup } from "./components/ButtonGroup";
 import { PokemonCard } from "./components/PokemonCard";
 import { PokemonDetails } from "./components/PokemonDetails";
 import { SearchBar } from "./components/SearchBar";
-
 axiosRetry(axios, {
   retries: 10,
   retryDelay: axiosRetry.exponentialDelay,
@@ -129,36 +129,13 @@ function App() {
                   searchInput={searchInput}
                   onSearchInputChange={handleSearchInputChange}
                 />
-                <button
-                  onClick={sortByNameAZ}
-                  className="btn text-white bg-[#3e7dca]"
-                >
-                  Sort by name (A-Z)
-                </button>
-                <button
-                  onClick={sortByNameZA}
-                  className="btn text-white bg-[#3e7dca]"
-                >
-                  Sort by name (Z-A)
-                </button>
-                <button
-                  onClick={sortByIDAsc}
-                  className="btn text-white bg-[#3e7dca]"
-                >
-                  Sort by ID (1-1010)
-                </button>
-                <button
-                  onClick={sortByIDDesc}
-                  className="btn text-white bg-[#3e7dca]"
-                >
-                  Sort by ID (1010-1)
-                </button>
-                <button
-                  onClick={loadMorePokemon}
-                  className="btn text-white bg-[#3e7dca]"
-                >
-                  Load More Pokemon
-                </button>
+                <ButtonGroup
+                  sortByNameAZ={sortByNameAZ}
+                  sortByNameZA={sortByNameZA}
+                  sortByIDAsc={sortByIDAsc}
+                  sortByIDDesc={sortByIDDesc}
+                  loadMorePokemon={loadMorePokemon}
+                />
               </div>
             </div>
             <div className="flex flex-row flex-wrap gap-4 justify-center">
