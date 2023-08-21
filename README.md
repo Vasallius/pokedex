@@ -18,6 +18,7 @@ This is a React project for Old St. Labs Internship Application. You can view th
 - React
 - Tailwind + DaisyUI (pre-made components)
 - React Router (for routing)
+- React Icons (for icons)
 - Axios (for fetching data)
 - Typescript (for type checking), would have wanted to implement Zod, however there was not much need for validation
 - Vite (for bundling)
