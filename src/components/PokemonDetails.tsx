@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "react-circular-progressbar/dist/styles.css";
 import { useParams } from "react-router-dom";
-import PokemonGif from "../assets/simple_pokeball.gif";
 import {
   calculateWeakness,
   capitalize,
@@ -34,11 +33,7 @@ export function PokemonDetails() {
   }, [pokemonID]);
 
   if (!pokemonData) {
-    return (
-      <div>
-        <img src={PokemonGif} alt="test" />
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 
   const { id, name, types, height, weight, stats } = pokemonData;
