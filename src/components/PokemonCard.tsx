@@ -40,8 +40,6 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
       )
     );
 
-    const typeswrapper = <div>{types}</div>;
-
     return (
       <Link to={`/${data.id}`}>
         <div className="card card-normal  w-96 bg-base-100 shadow-xl basis-1/5 lg:1/6">
@@ -59,7 +57,7 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
             <h2 className="card-title">
               #{padNumber(data.id)} {capitalize(name)}
             </h2>
-            {typeswrapper}
+            <div>{types}</div>
           </div>
         </div>
       </Link>
