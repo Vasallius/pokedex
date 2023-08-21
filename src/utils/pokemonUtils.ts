@@ -106,3 +106,32 @@ export function calculateWeakness(type1: string, type2?: string): string[] {
 
   return Array.from(weakness);
 }
+
+type Pokemon = {
+  name: string;
+  url: string;
+};
+
+export const sortByNameAZ = (list: Pokemon[]) => {
+  return [...list].sort((a, b) => a.name.localeCompare(b.name));
+};
+
+export const sortByNameZA = (list: Pokemon[]) => {
+  return [...list].sort((a, b) => b.name.localeCompare(a.name));
+};
+
+export const sortByIDAsc = (list: Pokemon[]) => {
+  return [...list].sort((a, b) => {
+    const idA = parseInt(a.url.split("/").slice(-2, -1)[0]);
+    const idB = parseInt(b.url.split("/").slice(-2, -1)[0]);
+    return idA - idB;
+  });
+};
+
+export const sortByIDDesc = (list: Pokemon[]) => {
+  return [...list].sort((a, b) => {
+    const idA = parseInt(a.url.split("/").slice(-2, -1)[0]);
+    const idB = parseInt(b.url.split("/").slice(-2, -1)[0]);
+    return idB - idA;
+  });
+};

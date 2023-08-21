@@ -8,6 +8,12 @@ import { ButtonGroup } from "./components/ButtonGroup";
 import { PokemonCard } from "./components/PokemonCard";
 import { PokemonDetails } from "./components/PokemonDetails";
 import { SearchBar } from "./components/SearchBar";
+import {
+  sortByIDAsc,
+  sortByIDDesc,
+  sortByNameAZ,
+  sortByNameZA,
+} from "./utils/pokemonUtils";
 axiosRetry(axios, {
   retries: 10,
   retryDelay: axiosRetry.exponentialDelay,
@@ -54,45 +60,21 @@ function App() {
       .catch((error) => console.error("Error:", error));
   }
 
-  function sortByNameAZ() {
-    if (data) {
-      const sortedData = [...pokemonList].sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
-      setpokemonList(sortedData);
-    }
-  }
+  const handleSortByNameAZ = () => {
+    setpokemonList(sortByNameAZ(pokemonList));
+  };
 
-  function sortByIDAsc() {
-    if (data) {
-      const sortedData = [...pokemonList].sort((a, b) => {
-        const idA = parseInt(a.url.split("/").slice(-2, -1)[0]);
-        const idB = parseInt(b.url.split("/").slice(-2, -1)[0]);
-        return idA - idB;
-      });
-      setpokemonList(sortedData);
-    }
-  }
+  const handleSortByNameZA = () => {
+    setpokemonList(sortByNameZA(pokemonList));
+  };
 
-  function sortByIDDesc() {
-    if (data) {
-      const sortedData = [...pokemonList].sort((a, b) => {
-        const idA = parseInt(a.url.split("/").slice(-2, -1)[0]);
-        const idB = parseInt(b.url.split("/").slice(-2, -1)[0]);
-        return idB - idA;
-      });
-      setpokemonList(sortedData);
-    }
-  }
+  const handleSortByIDAsc = () => {
+    setpokemonList(sortByIDAsc(pokemonList));
+  };
 
-  function sortByNameZA() {
-    if (data) {
-      const sortedData = [...pokemonList].sort((a, b) =>
-        b.name.localeCompare(a.name)
-      );
-      setpokemonList(sortedData);
-    }
-  }
+  const handleSortByIDDesc = () => {
+    setpokemonList(sortByIDDesc(pokemonList));
+  };
 
   function handleSearchInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchInput(event.target.value);
@@ -130,10 +112,10 @@ function App() {
                   onSearchInputChange={handleSearchInputChange}
                 />
                 <ButtonGroup
-                  sortByNameAZ={sortByNameAZ}
-                  sortByNameZA={sortByNameZA}
-                  sortByIDAsc={sortByIDAsc}
-                  sortByIDDesc={sortByIDDesc}
+                  sortByNameAZ={handleSortByNameAZ}
+                  sortByNameZA={handleSortByNameZA}
+                  sortByIDAsc={handleSortByIDAsc}
+                  sortByIDDesc={handleSortByIDDesc}
                   loadMorePokemon={loadMorePokemon}
                 />
               </div>
