@@ -29,9 +29,9 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
 
   if (data) {
     const types = data.types.map(
-      (type: { slot: number; type: { name: string } }, index: number) => (
+      (type: { slot: number; type: { name: string } }) => (
         <div
-          key={`${type.type.name}-${index}`}
+          key={type.type.name}
           className="badge text-white mr-2 "
           style={{ backgroundColor: typeColors[type.type.name] }}
         >

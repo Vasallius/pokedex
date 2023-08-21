@@ -53,9 +53,9 @@ export function PokemonDetails() {
   const weaknessTypes = calculateWeakness(
     types[0].type.name,
     types[1]?.type.name
-  ).map((type: string, index: number) => (
+  ).map((type: string) => (
     <div
-      key={`${type}-${index}`}
+      key={type}
       className="badge text-white mr-2 "
       style={{ backgroundColor: typeColors[type.toLowerCase()] }}
     >
