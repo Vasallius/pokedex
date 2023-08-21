@@ -99,14 +99,14 @@ function App() {
         path="/"
         element={
           <>
-            <div className="flex flex-col items-center">
+            <header className="flex flex-col items-center">
               <img
                 src={Pokedex}
                 className="w-80 mt-8 mb-8"
                 alt="Pokedex Logo"
               />
 
-              <div className="flex flex-row gap-2 flex-wrap w-full justify-center mb-16">
+              <nav className="flex flex-row gap-2 flex-wrap w-full justify-center mb-16">
                 <SearchBar
                   searchInput={searchInput}
                   onSearchInputChange={handleSearchInputChange}
@@ -118,9 +118,9 @@ function App() {
                   sortByIDDesc={handleSortByIDDesc}
                   loadMorePokemon={loadMorePokemon}
                 />
-              </div>
-            </div>
-            <div className="flex flex-row flex-wrap gap-4 justify-center">
+              </nav>
+            </header>
+            <main className="flex flex-row flex-wrap gap-4 justify-center">
               {data &&
                 pokemonList.filter(filter).map((pokemon) => {
                   return (
@@ -131,7 +131,7 @@ function App() {
                     />
                   );
                 })}
-            </div>
+            </main>
           </>
         }
       />
