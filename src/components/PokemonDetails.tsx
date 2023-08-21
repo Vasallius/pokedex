@@ -44,15 +44,13 @@ export function PokemonDetails() {
     };
   };
   const pokemonTypes = types.map((type: PokemonType) => (
-    <>
-      <div
-        key={type.type.name}
-        className="badge text-white mr-2 "
-        style={{ backgroundColor: typeColors[type.type.name] }}
-      >
-        {capitalize(type.type.name)}
-      </div>
-    </>
+    <div
+      key={type.type.name}
+      className="badge text-white mr-2 "
+      style={{ backgroundColor: typeColors[type.type.name] }}
+    >
+      {capitalize(type.type.name)}
+    </div>
   ));
 
   const weaknessTypes = calculateWeakness(
