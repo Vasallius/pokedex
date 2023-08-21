@@ -10,7 +10,7 @@ export function SearchBar({
     <input
       type="text"
       placeholder="Search Pokemon by ID or Name"
-      className="input input-bordered w-full max-w-xs shrink-0"
+      className="input input-bordered w-full max-w-xs shrink-0 font-primary"
       value={searchInput}
       onChange={onSearchInputChange}
     />

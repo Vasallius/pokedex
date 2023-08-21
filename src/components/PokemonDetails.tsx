@@ -59,7 +59,7 @@ export function PokemonDetails() {
   ).map((type: string) => (
     <div
       key={type}
-      className="badge text-white mr-2 "
+      className="badge text-white mr-2 font-primary"
       style={{ backgroundColor: typeColors[type.toLowerCase()] }}
     >
       {capitalize(type)}
@@ -73,13 +73,13 @@ export function PokemonDetails() {
             <div className="card card-side max-w-3xl bg-base-100 shadow-xl p-8 w-full mb-12">
               <PokemonImage id={padNumber(id)} lazy={false} />
               <div className="card-body">
-                <h1 className="card-title text-[30px] text-white ">
+                <h1 className="card-title text-[30px] text-white font-primary ">
                   # {padNumber(id)} {capitalize(name)}
                 </h1>
                 <div>{pokemonTypes}</div>
-                <p>Height: {height}</p>
-                <p>Weight: {weight}</p>
-                <p>Weakness: {weaknessTypes}</p>
+                <p className="font-primary">Height: {height}</p>
+                <p className="font-primary">Weight: {weight}</p>
+                <p className="font-primary">Weakness: {weaknessTypes}</p>
                 <div className="flex flex-wrap justify-between">
                   {stats.map((stat: Stat) => (
                     <Stat key={stat.stat.name} stat={stat} types={types} />

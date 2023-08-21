@@ -33,7 +33,7 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
       (type: { slot: number; type: { name: string } }) => (
         <div
           key={type.type.name}
-          className="badge text-white mr-2 "
+          className="badge text-white mr-2 font-primary "
           style={{ backgroundColor: typeColors[type.type.name] }}
         >
           {capitalize(type.type.name)}
@@ -46,9 +46,9 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
         <div className="card card-normal  w-96 bg-base-100 shadow-xl basis-1/5 lg:1/6">
           <PokemonImage id={padNumber(data.id)} lazy={true} />
           <div className="card-body">
-            <h2 className="card-title font-primary">
+            <p className="card-title font-primary">
               #{padNumber(data.id)} {capitalize(name)}
-            </h2>
+            </p>
             <div>{types}</div>
           </div>
         </div>
