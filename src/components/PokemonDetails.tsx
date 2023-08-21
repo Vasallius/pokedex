@@ -71,7 +71,7 @@ export function PokemonDetails() {
         <div className="flex flex-col items-center justify-center mt-12">
           <div className="w-full flex flex-col items-center">
             <div className="card card-side max-w-3xl bg-base-100 shadow-xl p-8 w-full mb-12">
-              <PokemonImage id={padNumber(id)} />
+              <PokemonImage id={padNumber(id)} lazy={false} />
               <div className="card-body">
                 <h1 className="card-title text-[30px] text-white ">
                   # {padNumber(id)} {capitalize(name)}

@@ -3,6 +3,7 @@ import axiosRetry from "axios-retry";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { capitalize, padNumber, typeColors } from "../utils/pokemonUtils";
+import { PokemonImage } from "./PokemonImage";
 axiosRetry(axios, {
   retries: 10,
   retryDelay: axiosRetry.exponentialDelay,
@@ -43,16 +44,7 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
     return (
       <Link to={`/${data.id}`}>
         <div className="card card-normal  w-96 bg-base-100 shadow-xl basis-1/5 lg:1/6">
-          <figure>
-            <img
-              loading="lazy"
-              src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${
-                data ? padNumber(data.id) : "001"
-              }.png`}
-              className="w-48"
-              alt="Picture of Pokemon"
-            />
-          </figure>
+          <PokemonImage id={padNumber(data.id)} lazy={true} />
           <div className="card-body">
             <h2 className="card-title">
               #{padNumber(data.id)} {capitalize(name)}
