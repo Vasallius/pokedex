@@ -20,6 +20,7 @@ This is a React project for Old St. Labs Internship Application. You can view th
 - React Router (for routing)
 - Axios (for fetching data)
 - Typescript (for type checking), would have wanted to implement Zod, however there was not much need for validation
+- Vite (for bundling)
 - ESLint (for linting)
 - Prettier (for formatting)
 - Vercel (for deployment)
