@@ -79,7 +79,7 @@ export function PokemonDetails() {
                 <div>{pokemonTypes}</div>
                 <p>Height: {height}</p>
                 <p>Weight: {weight}</p>
-                <p>Weak to: {weaknessTypes}</p>
+                <p>Weakness: {weaknessTypes}</p>
                 <div className="flex flex-wrap justify-between">
                   {stats.map((stat: Stat) => (
                     <Stat key={stat.stat.name} stat={stat} types={types} />
