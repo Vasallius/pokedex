@@ -1,6 +1,6 @@
-interface TypeColors {
+type TypeColors = {
   [key: string]: string;
-}
+};
 
 export const typeColors: TypeColors = {
   normal: "#A8A878",

@@ -1,9 +1,9 @@
 import { capitalize } from "../utils/pokemonUtils";
 
-interface TypeBadgeProps {
+type TypeBadgeProps = {
   typeName: string;
   typeColors: Record<string, string>;
-}
+};
 export const TypeBadge = ({ typeName, typeColors }: TypeBadgeProps) => {
   return (
     <div

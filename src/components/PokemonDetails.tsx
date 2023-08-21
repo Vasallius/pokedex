@@ -13,14 +13,14 @@ import { PokemonImage } from "./PokemonImage";
 import { Stat } from "./Stats";
 import { TypeBadge } from "./TypeBadge";
 
-interface Stat {
+type Stat = {
   base_stat: number;
   effort: number;
   stat: {
     name: string;
     url: string;
   };
-}
+};
 export function PokemonDetails() {
   const { pokemonID } = useParams();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

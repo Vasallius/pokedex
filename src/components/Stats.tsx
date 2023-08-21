@@ -3,14 +3,14 @@ import { capitalize, typeColors } from "../utils/pokemonUtils";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-interface Stat {
+type Stat = {
   base_stat: number;
   effort: number;
   stat: {
     name: string;
     url: string;
   };
-}
+};
 
 type PokemonType = {
   slot: number;
