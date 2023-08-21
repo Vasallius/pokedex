@@ -11,6 +11,7 @@ import {
 import { NavigationButtons } from "./NavigationButtons";
 import { PokemonImage } from "./PokemonImage";
 import { Stat } from "./Stats";
+import { TypeBadge } from "./TypeBadge";
 
 interface Stat {
   base_stat: number;
@@ -44,27 +45,20 @@ export function PokemonDetails() {
     };
   };
   const pokemonTypes = types.map((type: PokemonType) => (
-    <div
+    <TypeBadge
       key={type.type.name}
-      className="badge text-white mr-2 font-primary [text-shadow:_1px_1px_8px_rgb(0_0_0_/_90%) "
-      style={{ backgroundColor: typeColors[type.type.name] }}
-    >
-      {capitalize(type.type.name)}
-    </div>
+      typeName={type.type.name}
+      typeColors={typeColors}
+    />
   ));
 
   const weaknessTypes = calculateWeakness(
     types[0].type.name,
     types[1]?.type.name
   ).map((type: string) => (
-    <p
-      key={type}
-      className="badge text-white mr-2 font-primary [text-shadow:_1px_1px_8px_rgb(0_0_0_/_90%)]"
-      style={{ backgroundColor: typeColors[type.toLowerCase()] }}
-    >
-      {capitalize(type)}
-    </p>
+    <TypeBadge key={type} typeName={type} typeColors={typeColors} />
   ));
+
   if (pokemonData) {
     return (
       <>
