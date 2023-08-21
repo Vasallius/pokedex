@@ -33,7 +33,7 @@ export const Stat = ({ stat, types }: { stat: Stat; types: PokemonType[] }) => {
 
   return (
     <div className="w-1/2 md:w-1/3 p-2">
-      <h2>{capitalize(statName)}</h2>
+      <h2 className="font-primary">{capitalize(statName)}</h2>
       <div style={{ width: "50px", height: "50px" }}>
         <CircularProgressbar
           value={stat.base_stat}
@@ -47,6 +47,7 @@ export const Stat = ({ stat, types }: { stat: Stat; types: PokemonType[] }) => {
             text: {
               fill: "white",
               fontSize: "24px",
+              fontFamily: "DM Sans",
             },
           }}
         />
