@@ -1,14 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   calculateWeakness,
   capitalize,
   padNumber,
   typeColors,
 } from "../utils/pokemonUtils";
+import { NavigationButtons } from "./NavigationButtons";
+import { PokemonImage } from "./PokemonImage";
+import { Stat } from "./Stats";
 
 interface Stat {
   base_stat: number;
@@ -35,20 +37,23 @@ export function PokemonDetails() {
   }
 
   const { id, name, types, height, weight, stats } = pokemonData;
-
-  const pokemonTypes = types.map(
-    (type: { slot: number; type: { name: string } }) => (
-      <>
-        <div
-          key={type.type.name}
-          className="badge text-white mr-2 "
-          style={{ backgroundColor: typeColors[type.type.name] }}
-        >
-          {capitalize(type.type.name)}
-        </div>
-      </>
-    )
-  );
+  type PokemonType = {
+    slot: number;
+    type: {
+      name: string;
+    };
+  };
+  const pokemonTypes = types.map((type: PokemonType) => (
+    <>
+      <div
+        key={type.type.name}
+        className="badge text-white mr-2 "
+        style={{ backgroundColor: typeColors[type.type.name] }}
+      >
+        {capitalize(type.type.name)}
+      </div>
+    </>
+  ));
 
   const weaknessTypes = calculateWeakness(
     types[0].type.name,
@@ -68,79 +73,23 @@ export function PokemonDetails() {
         <div className="flex flex-col items-center justify-center mt-12">
           <div className="w-full flex flex-col items-center">
             <div className="card card-side max-w-3xl bg-base-100 shadow-xl p-8 w-full mb-12">
-              <figure>
-                <img
-                  src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${
-                    pokemonData ? padNumber(id) : "001"
-                  }.png`}
-                  alt="Picture of Pokemon"
-                  className="w-2/3"
-                />
-              </figure>
+              <PokemonImage id={padNumber(id)} />
               <div className="card-body">
                 <h1 className="card-title text-[30px] text-white">
                   # {padNumber(id)} {capitalize(name)}
                 </h1>
                 <div>{pokemonTypes}</div>
-                <div>Height: {height}</div>
-                <div>Weight: {weight}</div>
-                <div>Weak to: {weaknessTypes}</div>
+                <p>Height: {height}</p>
+                <p>Weight: {weight}</p>
+                <p>Weak to: {weaknessTypes}</p>
                 <div className="flex flex-wrap justify-between">
-                  {stats.map((stat: Stat) => {
-                    let statName = stat.stat.name;
-                    if (statName === "special-attack") {
-                      statName = "sp-Atk";
-                    } else if (statName === "special-defense") {
-                      statName = "sp-Def";
-                    } else if (statName === "hp") {
-                      statName = "HP";
-                    } else {
-                      statName = capitalize(statName);
-                    }
-
-                    return (
-                      <div key={stat.stat.name} className="w-1/2 p-2">
-                        <h2>{capitalize(statName)}</h2>
-                        <div style={{ width: "50px", height: "50px" }}>
-                          <CircularProgressbar
-                            value={stat.base_stat}
-                            maxValue={255}
-                            text={`${stat.base_stat}`}
-                            counterClockwise
-                            styles={{
-                              path: {
-                                stroke: `${typeColors[types[0].type.name]}`,
-                              },
-                              text: {
-                                fill: "white",
-                                fontSize: "24px",
-                              },
-                            }}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {stats.map((stat: Stat) => (
+                    <Stat key={stat.stat.name} stat={stat} types={types} />
+                  ))}
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-8">
-              <Link to="/">
-                <button className="btn  text-white normal-case bg-[#3e7dca]">
-                  Home
-                </button>
-              </Link>
-              <Link to={`/${id === 1 ? id : id - 1}`}>
-                <button className="btn  text-white normal-case bg-[#3e7dca]">
-                  Previous
-                </button>
-              </Link>
-              <Link to={`/${id === 1010 ? id : id + 1}`}>
-                <button className="btn  text-white normal-case bg-[#3e7dca]">
-                  Next
-                </button>
-              </Link>
-            </div>
+            <NavigationButtons id={id} />
           </div>
         </div>
       </>
