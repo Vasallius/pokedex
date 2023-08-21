@@ -6,6 +6,7 @@ import "./App.css";
 import Pokedex from "./assets/pokedex.svg";
 import { PokemonCard } from "./components/PokemonCard";
 import { PokemonDetails } from "./components/PokemonDetails";
+import { SearchBar } from "./components/SearchBar";
 
 axiosRetry(axios, {
   retries: 10,
@@ -124,12 +125,9 @@ function App() {
               />
 
               <div className="flex flex-row gap-2 flex-wrap w-full justify-center mb-16">
-                <input
-                  type="text"
-                  placeholder="Search Pokemon by ID or Name"
-                  className="input input-bordered w-full max-w-xs shrink-0"
-                  value={searchInput}
-                  onChange={handleSearchInputChange}
+                <SearchBar
+                  searchInput={searchInput}
+                  onSearchInputChange={handleSearchInputChange}
                 />
                 <button
                   onClick={sortByNameAZ}
