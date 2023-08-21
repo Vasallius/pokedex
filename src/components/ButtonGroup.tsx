@@ -43,7 +43,7 @@ export function ButtonGroup({
         onClick={loadMorePokemon}
         className="btn text-white font-primary bg-[#3e7dca]"
       >
-        Load More Pokemon
+        Load All Pokemon
       </button>
     </>
   );
