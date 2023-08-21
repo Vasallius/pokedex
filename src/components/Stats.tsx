@@ -49,6 +49,9 @@ export const Stat = ({ stat, types }: { stat: Stat; types: PokemonType[] }) => {
               fontSize: "24px",
               fontFamily: "DM Sans",
             },
+            trail: {
+              stroke: "#525252",
+            },
           }}
         />
       </div>
