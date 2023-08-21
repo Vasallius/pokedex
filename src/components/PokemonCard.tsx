@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { capitalize, padNumber, typeColors } from "../utils/pokemonUtils";
 import { PokemonImage } from "./PokemonImage";
+import { TypeBadge } from "./TypeBadge";
 axiosRetry(axios, {
   retries: 10,
   retryDelay: axiosRetry.exponentialDelay,
@@ -31,13 +32,11 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
   if (data) {
     const types = data.types.map(
       (type: { slot: number; type: { name: string } }) => (
-        <div
+        <TypeBadge
           key={type.type.name}
-          className="badge text-white mr-2 font-primary [text-shadow:_1px_1px_8px_rgb(0_0_0_/_90%)  "
-          style={{ backgroundColor: typeColors[type.type.name] }}
-        >
-          {capitalize(type.type.name)}
-        </div>
+          typeName={type.type.name}
+          typeColors={typeColors}
+        />
       )
     );
 
