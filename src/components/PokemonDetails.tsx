@@ -73,7 +73,7 @@ export function PokemonDetails() {
             <div className="card card-side max-w-3xl bg-base-100 shadow-xl p-8 w-full mb-12">
               <PokemonImage id={padNumber(id)} lazy={false} />
               <div className="card-body">
-                <h1 className="card-title text-[30px] text-white font-primary ">
+                <h1 className="card-title text-[30px] text-white font-primary tracking-wider">
                   # {padNumber(id)} {capitalize(name)}
                 </h1>
                 <div>{pokemonTypes}</div>
