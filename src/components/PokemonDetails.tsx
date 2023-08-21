@@ -9,6 +9,7 @@ import {
   padNumber,
   typeColors,
 } from "../utils/pokemonUtils";
+import { PokemonImage } from "./PokemonImage";
 
 interface Stat {
   base_stat: number;
@@ -68,15 +69,7 @@ export function PokemonDetails() {
         <div className="flex flex-col items-center justify-center mt-12">
           <div className="w-full flex flex-col items-center">
             <div className="card card-side max-w-3xl bg-base-100 shadow-xl p-8 w-full mb-12">
-              <figure>
-                <img
-                  src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${
-                    pokemonData ? padNumber(id) : "001"
-                  }.png`}
-                  alt="Picture of Pokemon"
-                  className="w-2/3"
-                />
-              </figure>
+              <PokemonImage id={padNumber(id)} />
               <div className="card-body">
                 <h1 className="card-title text-[30px] text-white">
                   # {padNumber(id)} {capitalize(name)}
