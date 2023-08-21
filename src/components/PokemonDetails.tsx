@@ -2,13 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   calculateWeakness,
   capitalize,
   padNumber,
   typeColors,
 } from "../utils/pokemonUtils";
+import { NavigationButtons } from "./NavigationButtons";
 import { PokemonImage } from "./PokemonImage";
 
 interface Stat {
@@ -117,23 +118,7 @@ export function PokemonDetails() {
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-8">
-              <Link to="/">
-                <button className="btn  text-white normal-case bg-[#3e7dca]">
-                  Home
-                </button>
-              </Link>
-              <Link to={`/${id === 1 ? id : id - 1}`}>
-                <button className="btn  text-white normal-case bg-[#3e7dca]">
-                  Previous
-                </button>
-              </Link>
-              <Link to={`/${id === 1010 ? id : id + 1}`}>
-                <button className="btn  text-white normal-case bg-[#3e7dca]">
-                  Next
-                </button>
-              </Link>
-            </div>
+            <NavigationButtons id={id} />
           </div>
         </div>
       </>
