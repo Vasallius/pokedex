@@ -43,7 +43,7 @@ export function PokemonCard({ name, link }: PokemonCardProps) {
     return (
       <Link to={`/${data.id}`}>
         <div className="card card-normal  w-96 bg-base-100 shadow-xl basis-1/5 lg:1/6">
-          <PokemonImage id={padNumber(data.id)} lazy={true} />
+          <PokemonImage id={padNumber(data.id)} lazy={false} />
           <div className="card-body">
             <p className=" font-primary font-semibold text-xl">
               #{padNumber(data.id)} {capitalize(name)}
